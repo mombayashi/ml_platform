@@ -19,5 +19,5 @@
 - バックエンド：FastAPI  
 - フロントエンド：React  
 - データベース：MySQL  
-- 機械学習ライブラリ：scikit-learn, gensim, transformers (BERT), Prophet  
+- 機械学習ライブラリ：scikit-learn, numpy, pandas, scipy, joblib, threadpoolctl, nltk, textblob, gensim, transformers (BERT), Prophet
 - 楽天APIを用いたデータ取得
