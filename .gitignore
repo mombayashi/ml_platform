@@ -1,3 +1,7 @@
+# ============================================
+# Python / FastAPI
+# ============================================
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -5,6 +9,11 @@ __pycache__/
 
 # C extensions
 *.so
+
+# Virtual environments
+venv/
+.env
+backend/.env
 
 # Distribution / packaging
 .Python
@@ -22,13 +31,6 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Virtual environments
-.env/
-.venv/
-env/
-venv/
-ENV/
 
 # PyInstaller
 *.manifest
@@ -52,5 +54,60 @@ coverage.xml
 .dmypy.json
 dmypy.json
 
-# VSCode
+# Pydantic compiled files
+__pydantic__/
+
+
+# ============================================
+# Node.js / React
+# ============================================
+
+# Dependency directories
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Vite / Next / CRA builds
+.next/
+out/
+.vite/
+.temp/
+.eslintcache
+
+# Local env files
+.env
+.env.*            # .env.local, .env.development などを含む
+frontend/.env
+frontend/.env.*
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# VS Code settings (optional)
 .vscode/
+
+
+# ============================================
+# OS・IDE・エディタ関連
+# ============================================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# JetBrains IDEs
+.idea/
+
+# Others
+*.log
+*.sqlite3
+*.db
