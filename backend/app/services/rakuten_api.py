@@ -7,7 +7,7 @@ load_dotenv()
 RAKUTEN_APP_ID = os.getenv("RAKUTEN_APP_ID")
 
 def get_rakuten__api_items(keyword: str, hits: int = 10):
-    url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"  # ←最新に更新
+    url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
     params = {
         "applicationId": RAKUTEN_APP_ID,
         "keyword": keyword,
