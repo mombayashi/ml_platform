@@ -1,19 +1,10 @@
-from textblob import TextBlob
+from app.ml.sentiment_model import SentimentModel
 
-def analyze_sentiment(text: str) -> dict:
-    """
-    与えられたテキストの感情分析を行うサンプル関数。
+# モデルをグローバルにロード（起動時1回だけ読み込み）
+model = SentimentModel()
+model.load()
 
-    Args:
-        text (str): 感情分析対象のテキスト
-
-    Returns:
-        dict: polarity（感情の極性：-1～1）、subjectivity（主観性：0～1）
-    """
-    blob = TextBlob(text)
-    sentiment = blob.sentiment
-
-    return {
-        "polarity": sentiment.polarity,
-        "subjectivity": sentiment.subjectivity
-    }
+def predict_sentiment(text: str) -> dict:
+    label = model.predict(text)
+    label_map = {0: "negative", 1: "positive"}  # ラベルを意味のある文字列に変換
+    return {"label": label_map.get(label, "unknown")}
