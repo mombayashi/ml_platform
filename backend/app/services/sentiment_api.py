@@ -4,6 +4,7 @@ from app.ml.sentiment_model import SentimentModel
 model = SentimentModel()
 model.load()
 
+
 def predict_sentiment(text: str) -> dict:
     label = model.predict(text)
     label_map = {0: "negative", 1: "positive"}  # ラベルを意味のある文字列に変換

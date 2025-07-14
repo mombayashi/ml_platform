@@ -1,6 +1,7 @@
 import os
 from app.ml.sentiment_model import SentimentModel
 
+
 def train_and_save_model():
     texts = [
         "今日は嬉しいです",
@@ -19,6 +20,7 @@ def train_and_save_model():
     model.train(texts, labels)  # 学習＆保存
 
     print("モデルの学習と保存が完了しました。")
+
 
 if __name__ == "__main__":
     train_and_save_model()

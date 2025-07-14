@@ -5,9 +5,11 @@ from app.services.clustering_api import perform_clustering
 
 router = APIRouter()
 
+
 class ClusteringRequest(BaseModel):
     data: List[List[float]]  # 多次元データのリスト
     n_clusters: int  # クラスタ数
+
 
 @router.post("/")
 def get_clusters(request: ClusteringRequest):

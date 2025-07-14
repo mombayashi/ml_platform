@@ -8,9 +8,11 @@ from db import crud
 
 router = APIRouter()
 
+
 class SentimentRequest(BaseModel):
     review_id: int
     text: str = Field(..., description="感情分析を行いたいテキスト")
+
 
 @router.post("/")
 def get_sentiment(request: SentimentRequest, db: Session = Depends(get_db)):
@@ -27,6 +29,10 @@ def get_sentiment(request: SentimentRequest, db: Session = Depends(get_db)):
             confidence=confidence
         )
 
-        return {"review_id": request.review_id, "text": request.text, "sentiment": result}
+        return {
+            "review_id": request.review_id,
+            "text": request.text,
+            "sentiment": result,
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

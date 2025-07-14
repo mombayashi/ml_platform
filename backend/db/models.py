@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 
 Base = declarative_base()
 
+
 class Item(Base):
     __tablename__ = "items"
 
@@ -17,6 +18,7 @@ class Item(Base):
     review_count = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
 
+
 class Review(Base):
     __tablename__ = "reviews"
 
@@ -27,6 +29,7 @@ class Review(Base):
     review_score = Column(Float)
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
 
+
 class Recommendation(Base):
     __tablename__ = "recommendations"
 
@@ -35,6 +38,7 @@ class Recommendation(Base):
     recommended_item_code = Column(String(255), nullable=False)
     similarity_score = Column(Float)
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
+
 
 class Sentiment(Base):
     __tablename__ = "sentiments"
@@ -45,6 +49,7 @@ class Sentiment(Base):
     confidence = Column(Float)
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
 
+
 class PriceForecast(Base):
     __tablename__ = "price_forecasts"
 
@@ -53,6 +58,7 @@ class PriceForecast(Base):
     forecast_date = Column(Date)
     predicted_price = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
+
 
 class Cluster(Base):
     __tablename__ = "clusters"
