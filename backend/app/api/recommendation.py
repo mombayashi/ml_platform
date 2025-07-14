@@ -4,8 +4,10 @@ from app.services.rakuten_api import get_rakuten__api_items
 
 router = APIRouter()
 
+
 class RecommendRequest(BaseModel):
     keyword: str = Field(..., description="検索に使用するキーワード")
+
 
 @router.post("/")
 def get_recommendations(request: RecommendRequest):

@@ -3,6 +3,7 @@ import os
 import joblib
 from statsmodels.tsa.arima.model import ARIMA
 
+
 class TimeSeriesModel:
     def __init__(self, model_path="models/timeseries_model.pkl"):
         self.model_path = model_path

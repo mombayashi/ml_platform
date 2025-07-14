@@ -3,8 +3,13 @@ import os
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+
 class SentimentModel:
-    def __init__(self, model_path="models/sentiment_model.pkl", vec_path="models/tfidf.pkl"):
+    def __init__(
+        self,
+        model_path="models/sentiment_model.pkl",
+        vec_path="models/tfidf.pkl",
+    ):
         self.model_path = model_path
         self.vec_path = vec_path
         self.model = None

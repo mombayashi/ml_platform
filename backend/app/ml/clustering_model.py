@@ -3,8 +3,13 @@ import os
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+
 class ClusteringModel:
-    def __init__(self, model_path="models/clustering_model.pkl", vec_path="models/clustering_tfidf.pkl"):
+    def __init__(
+        self,
+        model_path="models/clustering_model.pkl",
+        vec_path="models/clustering_tfidf.pkl",
+    ):
         self.model_path = model_path
         self.vec_path = vec_path
         self.model = None

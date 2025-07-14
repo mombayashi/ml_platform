@@ -1,5 +1,6 @@
 from sklearn.cluster import KMeans
 
+
 def perform_clustering(data, n_clusters):
     """
     data: List[List[float]] - 多次元の数値データ

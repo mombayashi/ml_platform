@@ -10,6 +10,7 @@ load_dotenv()
 
 RAKUTEN_APP_ID = os.getenv("RAKUTEN_APP_ID")
 
+
 @router.get("/")
 def get_items(keyword: str, hits: int = 10):
     try:

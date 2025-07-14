@@ -5,9 +5,11 @@ from app.services.timeseries_api import forecast_timeseries
 
 router = APIRouter()
 
+
 class TimeseriesRequest(BaseModel):
-    data: List[float] = Field(description = "時系列データのリスト")
-    periods: int = Field(description = "予測したい期間（ステップ数）")
+    data: List[float] = Field(description="時系列データのリスト")
+    periods: int = Field(description="予測したい期間（ステップ数）")
+
 
 @router.post("/")
 def get_forecast(request: TimeseriesRequest):
