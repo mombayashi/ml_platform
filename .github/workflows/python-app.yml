@@ -11,28 +11,47 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Python 3.12
       uses: actions/setup-python@v3
       with:
         python-version: "3.12"
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
     - name: Lint with flake8 (fail on errors)
+      id: flake8_lint
+      continue-on-error: true
       run: |
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Comment flake8 errors on PR
+      if: ${{ failure() && github.event_name == 'pull_request' }}
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        path: flake8_report.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Save flake8 output
+      if: ${{ always() }}
+      run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics > flake8_report.txt || true
+
     - name: Lint with flake8 (warnings only)
       run: |
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Skip tests
       run: echo "No tests defined. Skipping pytest."
