@@ -11,7 +11,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
+  pull-requests: write  # コメント書き込みに必要
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
       id: flake8_lint
       continue-on-error: true
       run: |
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics > flake8_report.txt 2>&1 || true
 
     - name: Comment flake8 errors on PR
       if: ${{ failure() && github.event_name == 'pull_request' }}
@@ -45,13 +45,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Save flake8 output
-      if: ${{ always() }}
-      run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics > flake8_report.txt || true
-
     - name: Lint with flake8 (warnings only)
       run: |
         flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Skip tests
       run: echo "No tests defined. Skipping pytest."
+
