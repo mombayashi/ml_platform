@@ -26,3 +26,16 @@ def save_sentiment(db: Session, review_id: int, label: str, confidence: float):
     db.commit()
     db.refresh(db_sentiment)
     return db_sentiment
+
+
+def save_clusters(db: Session, item_codes: list[str], clusters: list[int]):
+    results = []
+    for item_code, cluster_id in zip(item_codes, clusters):
+        cluster = models.Cluster(
+            item_code=item_code,
+            cluster_id=cluster_id
+        )
+        db.add(cluster)
+        results.append(cluster)
+    db.commit()
+    return results
