@@ -28,6 +28,24 @@ def save_sentiment(db: Session, review_id: int, label: str, confidence: float):
     return db_sentiment
 
 
+def save_recommendations(
+    db: Session,
+    base_item_code: str,
+    recommended_items: list[dict],
+):
+    results = []
+    for item in recommended_items:
+        rec = models.Recommendation(
+            base_item_code=base_item_code,
+            recommended_item_code=item.get("item_code", ""),
+            similarity_score=item.get("similarity_score"),
+        )
+        db.add(rec)
+        results.append(rec)
+    db.commit()
+    return results
+
+
 def save_clusters(db: Session, item_codes: list[str], clusters: list[int]):
     results = []
     for item_code, cluster_id in zip(item_codes, clusters):
