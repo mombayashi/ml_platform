@@ -29,13 +29,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
 
     - name: Lint with flake8 (fail on errors)
       id: flake8_lint
       continue-on-error: true
       run: |
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics > flake8_report.txt 2>&1 || true
+        flake8 backend/ --count --select=E9,F63,F7,F82 --show-source --statistics > flake8_report.txt 2>&1 || true
 
     - name: Comment flake8 errors on PR
       if: ${{ failure() && github.event_name == 'pull_request' }}
@@ -47,8 +47,8 @@ jobs:
 
     - name: Lint with flake8 (warnings only)
       run: |
-        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+        flake8 backend/ --count --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Skip tests
-      run: echo "No tests defined. Skipping pytest."
-
+    - name: Run tests
+      working-directory: backend
+      run: pytest tests/ -v

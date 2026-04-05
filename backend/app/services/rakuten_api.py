@@ -22,6 +22,7 @@ def get_rakuten_api_items(keyword: str, hits: int = 10):
 
     items = [
         {
+            "item_code": item["Item"]["itemCode"],
             "name": item["Item"]["itemName"],
             "url": item["Item"]["itemUrl"],
             "price": item["Item"]["itemPrice"],
